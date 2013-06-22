@@ -8,7 +8,8 @@ This is a simple way to bring up a modal alert dialog within a DialogFragment wi
 
 ### Usage
 
-Creating an alert to display is easy:
+In apps, you often may want to display an alert asking the user a question or displaying a message
+to the user. Creating an alert to display is easy:
 
 ```java
 class MyActivity extends FragmentActivity {
@@ -58,4 +59,32 @@ SimpleAlertDialog alert = SimpleAlertDialog.build(this, "Confirm?", new SimpleAl
 alert.setAlertIcon(R.drawable.ic_some_icon);
 alert.setAlertButtons("Yes", "No");
 alert.show();
+```
+
+## SimpleProgressDialog
+
+Often in an application there might be a long running task that requires the UI to be blocked 
+such as uploading an image. While this isn't the best UI, occassionally this can come up.
+
+Creating an indeterminate modal progress dialog is easy:
+
+```java
+SimpleProgressDialog dialog = SimpleProgressDialog.build(this);
+```
+
+By default, this will display the following alert:
+
+![ProgressDialog](http://i.imgur.com/rbEV8pM.png)
+
+You can dismiss the dialog once the task is complete with:
+
+```java
+dialog.dismiss();
+```
+
+You can also adjust the progress dialog to have a custom message:
+
+```java
+SimpleProgressDialog dialog = SimpleProgressDialog.build(this, "Uploading...");
+dialog.show();
 ```

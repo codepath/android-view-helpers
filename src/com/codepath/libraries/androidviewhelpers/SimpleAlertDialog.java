@@ -5,14 +5,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 
-public class SimpleAlertDialog extends DialogFragment {
+public class SimpleAlertDialog extends SimpleDialogFragment {
 	SimpleAlertListener listener;
-	String alertTitle, positiveText, negativeText;
+	String positiveText, negativeText;
 	int alertIcon;
-	FragmentActivity activity;
 
 	// SimpleAlertDialog.build(activity, "Do you want to delete that?", 
 	//  "OK", "Cancel", ...).show();
@@ -20,7 +18,7 @@ public class SimpleAlertDialog extends DialogFragment {
 			String positiveText, String negativeText,
 			SimpleAlertListener listener) {
 		SimpleAlertDialog dialogAlert = new SimpleAlertDialog();
-		dialogAlert.setAlertTitle(body);
+		dialogAlert.setAlertMessage(body);
 		dialogAlert.setAlertIcon(android.R.drawable.ic_dialog_alert);
 		dialogAlert.setAlertListener(listener);
 		dialogAlert.setAlertActivity(activity);
@@ -32,14 +30,6 @@ public class SimpleAlertDialog extends DialogFragment {
 	public static SimpleAlertDialog build(FragmentActivity activity, String body,
 			SimpleAlertListener listener) {
 		return build(activity, body, "OK", "Cancel", listener);
-	}
-	
-	public void show() {
-		this.show(activity.getSupportFragmentManager(), null);
-	}
-
-	public void setAlertTitle(String title) {
-		this.alertTitle = title;
 	}
 	
 	public void setAlertIcon(int drawable) {
@@ -54,17 +44,13 @@ public class SimpleAlertDialog extends DialogFragment {
 	protected void setAlertListener(SimpleAlertListener listener) {
 		this.listener = listener;
 	}
-	
-	protected void setAlertActivity(FragmentActivity activity) {
-		this.activity = activity;
-	}
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		 AlertDialog.Builder builder = 
 		   new AlertDialog.Builder(getActivity())
 				.setIcon(alertIcon)
-				.setTitle(alertTitle);
+				.setTitle(getAlertMessage());
 		 if (positiveText != null) {
 			 builder.setPositiveButton(positiveText,
 						new DialogInterface.OnClickListener() {
