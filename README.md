@@ -2,6 +2,10 @@
 
 This library is a collection of simple view helpers to make Android development easier. Right now, this library just has a few helpful classes but they will expand over time.
 
+## Installation
+
+Download the latest [jar file](https://www.dropbox.com/s/zhxgms8ck0a4wj2/codepath-android-view-helpers-0.1.0.jar) and drag the JAR to your "libs" folder.
+
 ## SimpleAlertDialog
 
 This is a simple way to bring up a modal alert dialog within a DialogFragment within a FragmentActivity. The dialog fragment used is the `v4.support` Fragment to support all Android versions.
